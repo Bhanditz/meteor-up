@@ -22,7 +22,7 @@
     "mup": "./index.js"
   },
   "scripts": {
-    "prepublish": "npm run build -s",
+    "prepublish": "npm run snyk-protect && npm run build -s",
     "build": "babel src --out-dir lib --sourceRoot=./ --copy-files --source-maps --presets=es2015,es2016,es2017,stage-3,stage-2",
     "build:watch": "npm run build -s -- -w",
     "pretest": "npm run lint",
@@ -34,7 +34,8 @@
     "lint:defaultConfig": "eslint --ext=\".sample\" -c .eslintrc.yml --rule=\"comma-dangle: 0\" .",
     "lint:code": "eslint .",
     "lint:readme": "eslint --ext md .",
-    "docs": "cd docs && bundle exec jekyll serve"
+    "docs": "cd docs && bundle exec jekyll serve",
+    "snyk-protect": "snyk protect"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -78,7 +79,8 @@
     "silent-npm-registry-client": "^3.0.1",
     "ssh2": "0.4.x",
     "uuid": "^3.1.0",
-    "yargs": "~8.0.2"
+    "yargs": "~8.0.2",
+    "snyk": "^1.316.1"
   },
   "nyc": {
     "sourceMap": false,
@@ -92,5 +94,6 @@
       "src/plugins/**",
       "**/__tests__/**"
     ]
-  }
+  },
+  "snyk": true
 }
